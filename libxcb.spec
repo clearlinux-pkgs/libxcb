@@ -4,7 +4,7 @@
 #
 Name     : libxcb
 Version  : 1.11.1
-Release  : 8
+Release  : 9
 URL      : http://xorg.freedesktop.org/releases/individual/xcb/libxcb-1.11.1.tar.gz
 Source0  : http://xorg.freedesktop.org/releases/individual/xcb/libxcb-1.11.1.tar.gz
 Summary  : XCB DRI3 Extension
@@ -65,6 +65,13 @@ lib components for the libxcb package.
 %setup -q -n libxcb-1.11.1
 
 %build
+export AR=gcc-ar
+export RANLIB=gcc-ranlib
+export NM=gcc-nm
+export CFLAGS="$CFLAGS -flto -O3 -fno-semantic-interposition -falign-functions=32 "
+export FCFLAGS="$CFLAGS -flto -O3 -fno-semantic-interposition -falign-functions=32 "
+export FFLAGS="$CFLAGS -flto -O3 -fno-semantic-interposition -falign-functions=32 "
+export CXXFLAGS="$CXXFLAGS -flto -O3 -fno-semantic-interposition -falign-functions=32 "
 %configure --disable-static
 make V=1  %{?_smp_mflags}
 
