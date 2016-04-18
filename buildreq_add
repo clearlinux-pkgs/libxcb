@@ -5,3 +5,5 @@
 xcb-proto-python
 python-dev
 python3
+inputproto
+libXi-dev

@@ -4,7 +4,7 @@
 #
 Name     : libxcb
 Version  : 1.11.1
-Release  : 11
+Release  : 12
 URL      : http://xorg.freedesktop.org/releases/individual/xcb/libxcb-1.11.1.tar.gz
 Source0  : http://xorg.freedesktop.org/releases/individual/xcb/libxcb-1.11.1.tar.gz
 Summary  : XCB DRI3 Extension
@@ -12,10 +12,10 @@ Group    : Development/Tools
 License  : MIT
 Requires: libxcb-lib
 Requires: libxcb-doc
+BuildRequires : inputproto
+BuildRequires : libXi-dev
 BuildRequires : libxslt-bin
 BuildRequires : pkgconfig(check)
-BuildRequires : pkgconfig(pthread-stubs)
-BuildRequires : pkgconfig(xau)
 BuildRequires : pkgconfig(xcb-proto)
 BuildRequires : pkgconfig(xdmcp)
 BuildRequires : pkgconfig(xorg-macros)
@@ -68,10 +68,10 @@ lib components for the libxcb package.
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -flto -falign-functions=32 -O3 -fno-semantic-interposition "
-export FCFLAGS="$CFLAGS -flto -falign-functions=32 -O3 -fno-semantic-interposition "
-export FFLAGS="$CFLAGS -flto -falign-functions=32 -O3 -fno-semantic-interposition "
-export CXXFLAGS="$CXXFLAGS -flto -falign-functions=32 -O3 -fno-semantic-interposition "
+export CFLAGS="$CFLAGS -fno-semantic-interposition -flto -O3 -falign-functions=32 "
+export FCFLAGS="$CFLAGS -fno-semantic-interposition -flto -O3 -falign-functions=32 "
+export FFLAGS="$CFLAGS -fno-semantic-interposition -flto -O3 -falign-functions=32 "
+export CXXFLAGS="$CXXFLAGS -fno-semantic-interposition -flto -O3 -falign-functions=32 "
 %configure --disable-static --enable-dri3
 make V=1  %{?_smp_mflags}
 
