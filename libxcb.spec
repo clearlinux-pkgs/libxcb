@@ -4,7 +4,7 @@
 #
 Name     : libxcb
 Version  : 1.12
-Release  : 16
+Release  : 17
 URL      : http://xorg.freedesktop.org/releases/individual/xcb/libxcb-1.12.tar.gz
 Source0  : http://xorg.freedesktop.org/releases/individual/xcb/libxcb-1.12.tar.gz
 Summary  : XCB DRI3 Extension
@@ -67,17 +67,19 @@ lib components for the libxcb package.
 %setup -q -n libxcb-1.12
 
 %build
+export LANG=C
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -fno-semantic-interposition -falign-functions=32 -flto -O3 "
-export FCFLAGS="$CFLAGS -fno-semantic-interposition -falign-functions=32 -flto -O3 "
-export FFLAGS="$CFLAGS -fno-semantic-interposition -falign-functions=32 -flto -O3 "
-export CXXFLAGS="$CXXFLAGS -fno-semantic-interposition -falign-functions=32 -flto -O3 "
+export CFLAGS="$CFLAGS -O3 -falign-functions=32 -flto -fno-semantic-interposition "
+export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -flto -fno-semantic-interposition "
+export FFLAGS="$CFLAGS -O3 -falign-functions=32 -flto -fno-semantic-interposition "
+export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -flto -fno-semantic-interposition "
 %configure --disable-static --enable-dri3
 make V=1  %{?_smp_mflags}
 
 %check
+export LANG=C
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost
