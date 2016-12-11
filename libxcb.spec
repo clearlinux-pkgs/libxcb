@@ -4,7 +4,7 @@
 #
 Name     : libxcb
 Version  : 1.12
-Release  : 18
+Release  : 19
 URL      : http://xorg.freedesktop.org/releases/individual/xcb/libxcb-1.12.tar.gz
 Source0  : http://xorg.freedesktop.org/releases/individual/xcb/libxcb-1.12.tar.gz
 Summary  : XCB DRI3 Extension
@@ -22,13 +22,13 @@ BuildRequires : graphviz
 BuildRequires : inputproto
 BuildRequires : libXau-dev
 BuildRequires : libXau-dev32
+BuildRequires : libXi-dev
+BuildRequires : libXi-dev32
 BuildRequires : libxslt-bin
-BuildRequires : pkgconfig(32pthread-stubs)
 BuildRequires : pkgconfig(32xcb-proto)
 BuildRequires : pkgconfig(32xdmcp)
 BuildRequires : pkgconfig(32xorg-macros)
 BuildRequires : pkgconfig(check)
-BuildRequires : pkgconfig(pthread-stubs)
 BuildRequires : pkgconfig(xcb-proto)
 BuildRequires : pkgconfig(xdmcp)
 BuildRequires : pkgconfig(xorg-macros)

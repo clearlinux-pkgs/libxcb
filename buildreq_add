@@ -6,6 +6,7 @@ xcb-proto-python
 python-dev
 python3
 inputproto
-#libXi-dev
+libXi-dev
+libXi-dev32
 libXau-dev
 libXau-dev32
