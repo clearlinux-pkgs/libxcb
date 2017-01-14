@@ -10,3 +10,7 @@ libXi-dev
 libXi-dev32
 libXau-dev
 libXau-dev32
+graphviz
+doxygen
+check
+libxslt-bin

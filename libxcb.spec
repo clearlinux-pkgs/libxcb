@@ -4,7 +4,7 @@
 #
 Name     : libxcb
 Version  : 1.12
-Release  : 21
+Release  : 22
 URL      : http://xorg.freedesktop.org/releases/individual/xcb/libxcb-1.12.tar.gz
 Source0  : http://xorg.freedesktop.org/releases/individual/xcb/libxcb-1.12.tar.gz
 Summary  : XCB DRI3 Extension
@@ -12,6 +12,7 @@ Group    : Development/Tools
 License  : MIT
 Requires: libxcb-lib
 Requires: libxcb-doc
+BuildRequires : check
 BuildRequires : doxygen
 BuildRequires : gcc-dev32
 BuildRequires : gcc-libgcc32
@@ -62,6 +63,7 @@ dev components for the libxcb package.
 Summary: dev32 components for the libxcb package.
 Group: Default
 Requires: libxcb-lib32
+Requires: libxcb-dev
 
 %description dev32
 dev32 components for the libxcb package.
@@ -99,20 +101,23 @@ popd
 
 %build
 export LANG=C
+export SOURCE_DATE_EPOCH=1484410870
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -falign-functions=32 -flto -fno-semantic-interposition "
-export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -flto -fno-semantic-interposition "
-export FFLAGS="$CFLAGS -O3 -falign-functions=32 -flto -fno-semantic-interposition "
-export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -flto -fno-semantic-interposition "
+export CFLAGS="$CFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto -fno-semantic-interposition "
+export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto -fno-semantic-interposition "
+export FFLAGS="$CFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto -fno-semantic-interposition "
+export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto -fno-semantic-interposition "
 %configure --disable-static --enable-dri3
 make V=1  %{?_smp_mflags}
 
-pushd ../build32
+pushd ../build32/
+export PKG_CONFIG_PATH="/usr/lib32/pkgconfig"
 export CFLAGS="$CFLAGS -m32"
 export CXXFLAGS="$CXXFLAGS -m32"
-%configure --disable-static --enable-dri3 --libdir=/usr/lib32
+export LDFLAGS="$LDFLAGS -m32"
+%configure --disable-static --enable-dri3   --libdir=/usr/lib32 --build=i686-generic-linux-gnu --host=i686-generic-linux-gnu --target=i686-clr-linux-gnu
 make V=1  %{?_smp_mflags}
 popd
 %check
@@ -123,13 +128,14 @@ export no_proxy=localhost
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
+export SOURCE_DATE_EPOCH=1484410870
 rm -rf %{buildroot}
-pushd ../build32
+pushd ../build32/
 %make_install32
 if [ -d  %{buildroot}/usr/lib32/pkgconfig ]
 then
 pushd %{buildroot}/usr/lib32/pkgconfig
-for i in *.pc ; do mv $i 32$i ; done
+for i in *.pc ; do ln -s $i 32$i ; done
 popd
 fi
 popd
@@ -266,6 +272,29 @@ popd
 /usr/lib32/pkgconfig/32xcb-xv.pc
 /usr/lib32/pkgconfig/32xcb-xvmc.pc
 /usr/lib32/pkgconfig/32xcb.pc
+/usr/lib32/pkgconfig/xcb-composite.pc
+/usr/lib32/pkgconfig/xcb-damage.pc
+/usr/lib32/pkgconfig/xcb-dpms.pc
+/usr/lib32/pkgconfig/xcb-dri2.pc
+/usr/lib32/pkgconfig/xcb-dri3.pc
+/usr/lib32/pkgconfig/xcb-glx.pc
+/usr/lib32/pkgconfig/xcb-present.pc
+/usr/lib32/pkgconfig/xcb-randr.pc
+/usr/lib32/pkgconfig/xcb-record.pc
+/usr/lib32/pkgconfig/xcb-render.pc
+/usr/lib32/pkgconfig/xcb-res.pc
+/usr/lib32/pkgconfig/xcb-screensaver.pc
+/usr/lib32/pkgconfig/xcb-shape.pc
+/usr/lib32/pkgconfig/xcb-shm.pc
+/usr/lib32/pkgconfig/xcb-sync.pc
+/usr/lib32/pkgconfig/xcb-xf86dri.pc
+/usr/lib32/pkgconfig/xcb-xfixes.pc
+/usr/lib32/pkgconfig/xcb-xinerama.pc
+/usr/lib32/pkgconfig/xcb-xkb.pc
+/usr/lib32/pkgconfig/xcb-xtest.pc
+/usr/lib32/pkgconfig/xcb-xv.pc
+/usr/lib32/pkgconfig/xcb-xvmc.pc
+/usr/lib32/pkgconfig/xcb.pc
 
 %files doc
 %defattr(-,root,root,-)
