@@ -4,7 +4,7 @@
 #
 Name     : libxcb
 Version  : 1.12
-Release  : 22
+Release  : 23
 URL      : http://xorg.freedesktop.org/releases/individual/xcb/libxcb-1.12.tar.gz
 Source0  : http://xorg.freedesktop.org/releases/individual/xcb/libxcb-1.12.tar.gz
 Summary  : XCB DRI3 Extension
@@ -101,7 +101,7 @@ popd
 
 %build
 export LANG=C
-export SOURCE_DATE_EPOCH=1484410870
+export SOURCE_DATE_EPOCH=1484676063
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
@@ -110,7 +110,7 @@ export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto -fno-se
 export FFLAGS="$CFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto -fno-semantic-interposition "
 export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto -fno-semantic-interposition "
 %configure --disable-static --enable-dri3
-make V=1  %{?_smp_mflags}
+make V=1
 
 pushd ../build32/
 export PKG_CONFIG_PATH="/usr/lib32/pkgconfig"
@@ -118,17 +118,17 @@ export CFLAGS="$CFLAGS -m32"
 export CXXFLAGS="$CXXFLAGS -m32"
 export LDFLAGS="$LDFLAGS -m32"
 %configure --disable-static --enable-dri3   --libdir=/usr/lib32 --build=i686-generic-linux-gnu --host=i686-generic-linux-gnu --target=i686-clr-linux-gnu
-make V=1  %{?_smp_mflags}
+make V=1
 popd
 %check
 export LANG=C
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost
-make VERBOSE=1 V=1 %{?_smp_mflags} check
+make VERBOSE=1 V=1 check
 
 %install
-export SOURCE_DATE_EPOCH=1484410870
+export SOURCE_DATE_EPOCH=1484676063
 rm -rf %{buildroot}
 pushd ../build32/
 %make_install32
