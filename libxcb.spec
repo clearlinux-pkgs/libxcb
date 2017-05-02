@@ -4,7 +4,7 @@
 #
 Name     : libxcb
 Version  : 1.12
-Release  : 25
+Release  : 26
 URL      : http://xorg.freedesktop.org/releases/individual/xcb/libxcb-1.12.tar.gz
 Source0  : http://xorg.freedesktop.org/releases/individual/xcb/libxcb-1.12.tar.gz
 Summary  : XCB DRI3 Extension
