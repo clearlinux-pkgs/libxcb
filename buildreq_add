@@ -2,7 +2,7 @@
 # This file contains extra pkgconfig build requirements that don't get picked up but are 
 # desirable. One name per line, no whitespace.
 #
-xcb-proto-python
+xcb-proto
 python-dev
 python3
 inputproto
