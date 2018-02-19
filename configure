@@ -1,2 +1,2 @@
 --enable-dri3
-
+PYTHON=/usr/bin/python2
