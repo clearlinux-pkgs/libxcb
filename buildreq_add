@@ -5,7 +5,7 @@
 xcb-proto
 python-dev
 python3
-inputproto
+xorgproto-dev
 libXi-dev
 libXi-dev32
 libXau-dev
