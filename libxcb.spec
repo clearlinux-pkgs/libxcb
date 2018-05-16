@@ -4,7 +4,7 @@
 #
 Name     : libxcb
 Version  : 1.13
-Release  : 33
+Release  : 34
 URL      : http://xorg.freedesktop.org/releases/individual/xcb/libxcb-1.13.tar.gz
 Source0  : http://xorg.freedesktop.org/releases/individual/xcb/libxcb-1.13.tar.gz
 Summary  : X-protocol C Binding
