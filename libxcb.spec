@@ -32,7 +32,7 @@ BuildRequires : pkgconfig(check)
 BuildRequires : pkgconfig(xcb-proto)
 BuildRequires : pkgconfig(xdmcp)
 BuildRequires : pkgconfig(xorg-macros)
-BuildRequires : python-dev
+
 BuildRequires : python3
 BuildRequires : xcb-proto
 BuildRequires : xorgproto-dev
