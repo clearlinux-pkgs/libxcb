@@ -14,3 +14,5 @@ graphviz
 doxygen
 check
 libxslt-bin
+check-dev32
+check-dev
